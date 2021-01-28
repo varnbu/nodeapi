@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div id="app">click</div>
+<template id="tmpl">
+    <style>
+        .msg{color: red}
+    </style>
+    <script>
+    console.log('hello template')
+    </script>
+    <div class="msg">hello template</div>
+</template>
+</body>
+<script>
+// app.addEventListener('click',function (){
+//     console.log(22)
+//     app.attachShadow({mode: "open"})
+//     app.shadowRoot.appendChild(tmpl.content.cloneNode(true))
+// })
+app.onclick = function () {
+    console.log(11)
+    app.attachShadow({mode: "open"})
+    app.shadowRoot.appendChild(tmpl.content.cloneNode(true))
+}
+</script>
+</html>
