@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div id="app">
+    <time-formatted id="aa"></time-formatted>
+    <time-formatted id="bb" datetime="2020-2-1"></time-formatted>
+    <button is="hello-button">
+        自定义按钮
+    </button>
+</div>
+<div>
+    <show-hello id="helloName" name="hahah"></show-hello>
+</div>
+</body>
+<script>
+
+// Autonomous 方式  全新标签，继承 HTMLElement
+class TimeFormat extends HTMLElement {
+    constructor () {
+        super();
+        this.addEventListener('click', e => {
+            console.log('clicked', e)
+            console.log(this.innerHTML)
+        })
+    }
+
+    render () {
+        let date = new Date(this.getAttribute('datetime') || Date.now())
+        this.innerHTML = date.toLocaleDateString()
+    }
+
+    connectedCallback () {
+        if (!this.rendered) {
+            this.render()
+            this.rendered = true
+        }
+    }
+
+    static get observedAttributes () {
+        // 这些属性变化会被监视
+        return ['datetime']
+    }
+
+    attributeChangedCallback (name, oldValue, newValue) {
+        console.log('change', name, oldValue, newValue)
+        this.render()
+    }
+}
+
+// 自定义元素的展现取决于什么时候调用此方法
+customElements.define('time-formatted', TimeFormat)
+
+
+// 对应的元素定以后才会出现
+customElements.whenDefined('time-formatted').then(() => {
+    console.log('time-formatted元素已被定义')
+})
+setTimeout(() => {
+    aa.setAttribute('datetime', '2000/02/01')
+    bb.setAttribute('datetime', '2000/02/02')
+}, 1000)
+
+
+// Customized build-in element 方式  扩展已有元素
+class HelloButton extends HTMLButtonElement {
+    constructor () {
+        super();
+        this.addEventListener('click', (e) => {
+            console.log('hello button element')
+            console.log('event is', e)
+        })
+    }
+}
+
+customElements.define('hello-button', HelloButton, {extends: 'button'})
+
+customElements.define('show-hello',class extends HTMLElement{
+    connectedCallback(){
+        // 注意 open 与 closed 的区别
+        // open 的时候 可以通过 element.shadowRoot 访问
+        const shadow=this.attachShadow({mode:'open'})
+        // const shadow=this.attachShadow({mode:'colsed'})
+        shadow.innerHTML=`
+            <p>
+                hello ${this.getAttribute('name')}
+            </p>
+        `
+    }
+})
+
+console.log('helloName',helloName.shadowRoot)
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <a href="#" id="link" download="aaa1.md">下载</a>
+    <a href="#" id="link2" download="aaa1.md">下载2</a>
+
+</div>
+<div>
+    <img src="./runing.jpg" id="running">
+    <img src="" id="runningCopy">
+    <a  id="runningDownload" href="#" download="aaaaa.png">下载图</a>
+</div>
+
+</body>
+<script>
+let link = document.querySelector('#link')
+
+// 下面两种方式都可用，但通常使用 URL.createObjectURL 更简单快捷
+
+
+let blob = new Blob(["# hello world"], {type: 'text/plain'})
+// 直接访问，无需编码解码
+link.href = URL.createObjectURL(blob)
+// 移除引用，允许清除内存中的这个对象
+URL.revokeObjectURL(link.href)
+
+
+let link2 = document.querySelector('#link')
+let blob2 = new Blob(['你好，是是是'], {type: 'text/plain'})
+// 对大的 blob 进行编码的时候性能与内存会有损耗
+let reader = new FileReader()
+reader.readAsDataURL(blob2) // 将 bolb 转换为 base64 并调用 onload
+reader.onload = function () {
+    link2.href = reader.result
+}
+
+
+let orginImg = document.querySelector('#running')
+let targetImg = document.querySelector('#runningDownload')
+let copyImg = document.querySelector('#runningCopy')
+orginImg.onload=function (){
+    let canvas = document.createElement('canvas')
+    canvas.width = orginImg.clientWidth
+    canvas.height = orginImg.clientHeight
+    let context = canvas.getContext('2d')
+    context.drawImage(orginImg, 0, 0)
+    canvas.toBlob(function (blob) {
+        targetImg.download='eee.png'
+        let img = URL.createObjectURL(blob)
+        targetImg.href = img
+        copyImg.src= img
+        // targetImg.click()
+        // URL.revokeObjectURL(img)
+    },'image/png')
+}
+
+
+let buffer=new ArrayBuffer(16)
+console.log(buffer)
+
+let view= new Uint32Array(buffer)
+console.log(view)
+view[0]=255
+console.log(view)
+</script>
+</html>
