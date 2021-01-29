@@ -9,12 +9,14 @@
 <div id="app">click</div>
 <template id="tmpl">
     <style>
-        .msg{color: red}
+        .msg {
+            color: red
+        }
     </style>
     <script>
     console.log('hello template')
     </script>
-    <div class="msg">hello template</div>
+    <div class="msg" id="msg">hello template</div>
 </template>
 </body>
 <script>
@@ -23,10 +25,14 @@
 //     app.attachShadow({mode: "open"})
 //     app.shadowRoot.appendChild(tmpl.content.cloneNode(true))
 // })
+
 app.onclick = function () {
     console.log(11)
     app.attachShadow({mode: "open"})
     app.shadowRoot.appendChild(tmpl.content.cloneNode(true))
+    setTimeout(() => {
+        app.shadowRoot.getElementById('msg').innerHTML = 'hello 1s later'
+    }, 1000)
 }
 </script>
 </html>

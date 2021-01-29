@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #xiao {
+        color: red;
+    }
+
+    span, div {
+        color: aqua;
+    }
+</style>
+
+<body>
+<user-card id="xiao">
+    <div>哈哈哈</div>
+    <span slot="username">小王</span>
+    <span id="xiaowang" slot="username">小黑</span>
+    <span id="address" slot="address">铭盛大厦</span>
+    <div>嘿嘿嘿</div>
+</user-card>
+</body>
+<script>
+customElements.define('user-card', class extends HTMLElement {
+    connectedCallback () {
+        this.attachShadow({mode: 'open'})
+        this.shadowRoot.innerHTML = `
+        <style>
+        :host{
+             font-size: 20px;
+        }
+        span{
+        color: antiquewhite;
+        }
+        </style>
+        <div>
+            <slot name="title">title</slot>
+        </div>
+        <div id="name">
+            Name:
+            <slot name="username">名字</slot>
+        </div>
+        <div>
+            address:
+             <slot name="address">地址</slot>
+        </div>
+        <div>other:
+            <slot>other slot default</slot>
+        </div>
+        `
+        this.shadowRoot.getElementById('name').addEventListener('slotchange', e => {
+            console.log('slot change', e)
+            console.log(e.target)
+            let slot = e.target
+            // 分配给插槽的节点
+            console.log(slot.assignedNodes({flatten: true}))
+            // 分配给插槽的元素
+            console.log(slot.assignedElements({flatten: true}))
+            console.log(e.target.name)
+        })
+
+        setTimeout(()=>{
+            this.dispatchEvent(new CustomEvent('test',{
+                bubbles:true,
+                composed:true,
+                detail:'哈哈哈'
+            }))
+        },5000)
+    }
+})
+
+setTimeout(() => {
+    xiaowang.innerHTML = '新小王'
+}, 1000)
+setTimeout(() => {
+    xiao.insertAdjacentHTML('beforeend', '<span slot="username">小小王<span>')
+}, 2000)
+console.log(address.assignedSlot);// node 分配给哪个slot元素
+
+
+document.onclick = (e) => {
+    console.log(e.target.tagName)
+}
+document.addEventListener('test', (e) => {
+    console.log(e.detail)
+})
+</script>
+</html>
