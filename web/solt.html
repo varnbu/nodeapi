@@ -22,8 +22,16 @@
     <span id="address" slot="address">铭盛大厦</span>
     <div>嘿嘿嘿</div>
 </user-card>
+
+
+<div id="test">test</div>
 </body>
 <script>
+
+test.onclick = function(){
+    window.open('https://www.baidu.com')
+}
+
 customElements.define('user-card', class extends HTMLElement {
     connectedCallback () {
         this.attachShadow({mode: 'open'})

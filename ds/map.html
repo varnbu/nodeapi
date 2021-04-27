@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="city.js"></script>
+<script >
+let map = new Map()
+console.log(city)
+for (const cityCode in city) {
+    console.log(city[cityCode])
+    let nowCity = city[cityCode]
+    map.set(nowCity.id,nowCity)
+}
+console.log(map);
+let bei = map.get(2)
+console.log(bei)
+bei.name='beijing'
+console.log(bei)
+console.log(city)
+
+
+</script>
+</html>
