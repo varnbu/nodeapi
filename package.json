@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "preg": "node index.js",
     "g": "gulp",
+    "postg": "git status",
     "build": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
