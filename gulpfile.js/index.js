@@ -36,7 +36,7 @@ for (const it of cwds) {
 
 function createExecTaskFunction (cwd, {dir, msg}) {
     console.log(cwd)
-    return function tast() {
+    return function () {
         return new Promise((resolve, reject) => {
             exec(cwd, function (err, stdout, stderr) {
                 process.chdir('../')

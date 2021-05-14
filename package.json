@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "preg": "node index.js",
+    "preg": "node index.js & node after.js",
     "g": "gulp",
     "postg": "git status",
     "build": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "varn",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "commander": "^7.2.0"
   }
 }
