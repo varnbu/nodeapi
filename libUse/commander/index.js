@@ -20,6 +20,12 @@ brew.command('tea').action(()=>{
     console.log('brew tea')
 })
 
+const doDo = program.command('play')
+ doDo.command('all').action(()=>{
+     console.log('play,all')
+ })
+
+
 program.parse(process.argv)
 const options = program.opts()
 console.log(options)
