@@ -1,7 +1,8 @@
 const {Command} = require('commander')
 
 const program = new Command()
-
+program.version('0.0.1')
+program.addHelpText('after','help info end-----------')
 program.arguments('<name>')
     .option('-t, --title <honorrific>', 'title before name')
     .option('-d, --debug', 'display debug info')
@@ -15,9 +16,11 @@ async function thanks(name, options, command){
             }
             const title = options.title ? options.title+' ' : ''
             console.log('thanks ',title,name)
-        },2000)
+        },1000)
     })
 }
+
+
 // program.parse(process.argv);
 // 替换函数
 program.parseAsync()

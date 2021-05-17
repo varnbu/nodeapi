@@ -13,9 +13,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "webpack": "^5.37.0"
   },
   "dependencies": {
-    "commander": "^7.2.0"
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0",
+    "execa": "^5.0.0",
+    "inquirer": "^8.0.0"
   }
 }
