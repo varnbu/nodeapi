@@ -7,6 +7,7 @@
     "g": "gulp",
     "postg": "git status",
     "build": "",
+    "wb": "webpack --config webpakck/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "varn",
@@ -14,7 +15,8 @@
   "description": "",
   "devDependencies": {
     "gulp": "^4.0.2",
-    "webpack": "^5.37.0"
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
   },
   "dependencies": {
     "chalk": "^4.1.1",
