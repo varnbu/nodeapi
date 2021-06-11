@@ -18,9 +18,8 @@ async function test (copyDirName, copyFileType) {
                 console.log(temp);
                 let copyPath = copyDirName + '/' + temp.base
                 console.log(copyPath)
-                let res = await fs.copyFile(it, copyPath)
+                await fs.copyFile(it, copyPath)
                 console.log('success')
-                console.log(res)
             }
         } catch (err) {
             console.log(err)
