@@ -1,7 +1,5 @@
 const fs = require('fs/promises')
 const path = require('path')
-// console.log(fs);
-// console.log(process.env.PWD);
 const copyDirName = 'copy'
 const copyFileType = '.html'
 
