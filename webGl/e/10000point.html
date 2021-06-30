@@ -23,7 +23,7 @@
 attribute vec4 a_Position;
 void main(){
     gl_Position =a_Position;
-    gl_PointSize=1.0;
+    gl_PointSize=2.0;
 }
 </script>
 <script id="shader-fs" type="x-shader/x-fragment">
@@ -62,7 +62,7 @@ function main () {
 
 const points = []
 let i = 0
-while (i <= 1000) {
+while (i <= 10000) {
     let p = {
         x: Math.random()*2-1,
         y: Math.random()*2-1,

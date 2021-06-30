@@ -18,6 +18,13 @@ async function test (copyDirName, copyFileType) {
                 console.log(copyPath)
                 await fs.copyFile(it, copyPath)
                 console.log('success')
+            } else {
+                let isDirectory = false
+                let stat = await fs.lstat(it)
+                isDirectory =  stat.isDirectory()
+                if (isDirectory) {
+
+                }
             }
         } catch (err) {
             console.log(err)
