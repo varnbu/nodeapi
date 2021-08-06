@@ -1,7 +1,7 @@
 function createGrid (it, index, DEVIDE_VALUE,LIST_lENGTH) {
     return {
         show: false,
-        top: index * 100 + 10,
+        top: index * 100 + 50,
         height: 100,
         left: 80,
         right: 20
@@ -96,7 +96,7 @@ function createTitle (it, index, DEVIDE_VALUE,LIST_lENGTH) {
         textAlign: 'center',
         text: it.LeadType,
         left: 12,
-        top: index * 100 + 50 - 12,
+        top: index * 100 + 100 - 12,
         textStyle: {
             fontSize: 12,
             fontWeight: 'normal'

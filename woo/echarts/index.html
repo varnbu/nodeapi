@@ -62,7 +62,7 @@ option = {
     title: titles.concat([
         {
             text: '心电图demo',
-            top: 'bottom',
+            top: 0,
             left: 'center'
         }
     ]),
@@ -73,10 +73,16 @@ option = {
     animation: true,
     animationThreshold: 20000,
     animationDuration: 2000,
-    dataZoom: {
-        type: 'inside',
-        xAxisIndex: Array.from(Array(LIST_lENGTH)).map((item, index) => index),
-    }
+    dataZoom: [
+        {
+            type: 'inside',
+            xAxisIndex: Array.from(Array(LIST_lENGTH)).map((item, index) => index),
+        },
+        {
+            type: 'slider',
+            xAxisIndex: Array.from(Array(LIST_lENGTH)).map((item, index) => index),
+        }
+    ]
 }
 console.log(option)
 option && myChart.setOption(option);
