@@ -42,19 +42,19 @@ list.forEach((it, index) => {
         ]
         data.push(temp)
     })
-    let grid = createGrid(it, index, DEVIDE_VALUE,LIST_lENGTH)
+    let grid = createGrid(it, index, DEVIDE_VALUE, LIST_lENGTH)
     grids.push(grid)
 
-    let xAe = createXAes(it, index, DEVIDE_VALUE,LIST_lENGTH)
+    let xAe = createXAes(it, index, DEVIDE_VALUE, LIST_lENGTH)
     xAes.push(xAe)
 
-    let yAe = createYAes(it, index, DEVIDE_VALUE,LIST_lENGTH)
+    let yAe = createYAes(it, index, DEVIDE_VALUE, LIST_lENGTH)
     yAes.push(yAe)
 
-    let sr = createSeries(it, index, data, DEVIDE_VALUE,LIST_lENGTH)
+    let sr = createSeries(it, index, data, DEVIDE_VALUE, LIST_lENGTH)
     series.push(sr)
 
-    let title = createTitle(it, index, DEVIDE_VALUE,LIST_lENGTH)
+    let title = createTitle(it, index, DEVIDE_VALUE, LIST_lENGTH)
     titles.push(title)
 
 })
@@ -72,9 +72,12 @@ option = {
     series: series,
     animation: true,
     animationThreshold: 20000,
-    animationDuration: 2000
+    animationDuration: 2000,
+    dataZoom: {
+        type: 'inside',
+        xAxisIndex: Array.from(Array(LIST_lENGTH)).map((item, index) => index),
+    }
 }
-
 console.log(option)
 option && myChart.setOption(option);
 
