@@ -61,7 +61,8 @@ function createYAes (it, index, DEVIDE_VALUE,LIST_lENGTH) {
                 type: 'solid'
             }
         },
-        min: 0,
+        min: (Number(it.RangeMin) / DEVIDE_VALUE).toFixed(0
+        ),
         max: (Number(it.RangeMax) / DEVIDE_VALUE).toFixed(0
         ),
         minorSplitLine: {
