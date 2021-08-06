@@ -29,33 +29,36 @@ let series = []
 let titles = []
 
 let x
+
+const DEVIDE_VALUE = 820
+const LIST_lENGTH = list.length
 list.forEach((it, index) => {
     console.log(it, index)
-    let data =[]
+    let data = []
     it.LeadData.forEach((it, index) => {
-        let temp =  [
-             index/500 ,
-             it / 820
+        let temp = [
+            index / 500,
+            it / DEVIDE_VALUE
         ]
         data.push(temp)
     })
-    let grid = createGrid(it, index)
+    let grid = createGrid(it, index, DEVIDE_VALUE,LIST_lENGTH)
     grids.push(grid)
 
-    let xAe = createXAes(it, index)
+    let xAe = createXAes(it, index, DEVIDE_VALUE,LIST_lENGTH)
     xAes.push(xAe)
 
-    let yAe = createYAes(it, index)
+    let yAe = createYAes(it, index, DEVIDE_VALUE,LIST_lENGTH)
     yAes.push(yAe)
 
-    let sr = createSeries(it, index, data)
+    let sr = createSeries(it, index, data, DEVIDE_VALUE,LIST_lENGTH)
     series.push(sr)
 
-    let title = createTitle(it, index)
+    let title = createTitle(it, index, DEVIDE_VALUE,LIST_lENGTH)
     titles.push(title)
 
 })
- option = {
+option = {
     title: titles.concat([
         {
             text: '心电图demo',
@@ -67,9 +70,9 @@ list.forEach((it, index) => {
     xAxis: xAes,
     yAxis: yAes,
     series: series,
-     animation:true,
-     animationThreshold:20000,
-     animationDuration:2000
+    animation: true,
+    animationThreshold: 20000,
+    animationDuration: 2000
 }
 
 console.log(option)
