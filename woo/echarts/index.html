@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<div id="main" style="width: 800px;height:800px;margin: 20px auto;"></div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"
+        integrity="sha256-TI0rIaxop+pDlHNVI6kDCFvmpxNYUnVH/SMjknZ/W0Y=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./data.js"></script>
+<script type="text/javascript" src="./list.js"></script>
+<script type="text/javascript" src="./utils.js"></script>
+<!--<script type="text/javascript" src="./base.js"></script>-->
+
+<script>
+
+
+let chartDom = document.getElementById('main');
+let myChart = echarts.init(chartDom);
+let option;
+
+
+let grids = []
+let xAes = []
+let yAes = []
+let series = []
+let titles = []
+
+let x
+list.forEach((it, index) => {
+    console.log(it, index)
+    let data =[]
+    it.LeadData.forEach((it, index) => {
+        let temp =  [
+             index/500 ,
+             it / 820
+        ]
+        data.push(temp)
+    })
+    let grid = createGrid(it, index)
+    grids.push(grid)
+
+    let xAe = createXAes(it, index)
+    xAes.push(xAe)
+
+    let yAe = createYAes(it, index)
+    yAes.push(yAe)
+
+    let sr = createSeries(it, index, data)
+    series.push(sr)
+
+    let title = createTitle(it, index)
+    titles.push(title)
+
+})
+ option = {
+    title: titles.concat([
+        {
+            text: '心电图demo',
+            top: 'bottom',
+            left: 'center'
+        }
+    ]),
+    grid: grids,
+    xAxis: xAes,
+    yAxis: yAes,
+    series: series,
+     animation:true,
+     animationThreshold:20000,
+     animationDuration:2000
+}
+
+console.log(option)
+option && myChart.setOption(option);
+
+</script>
+</html>
