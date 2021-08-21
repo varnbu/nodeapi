@@ -21,8 +21,9 @@ async function test (copyDirName, copyFileType) {
             } else {
                 let isDirectory = false
                 let stat = await fs.lstat(it)
-                isDirectory =  stat.isDirectory()
+                isDirectory = stat.isDirectory()
                 if (isDirectory) {
+
 
                 }
             }
@@ -33,3 +34,22 @@ async function test (copyDirName, copyFileType) {
 }
 
 test(copyDirName, copyFileType)
+
+function deep (dir, list = []) {
+    const arr = fs.readdirSync(path.join(__dirname, dir))
+    arr.forEach(item => {
+        const child = []
+        list.push({name: item, child})
+        const itemPath = path.join(__dirname, dir + item)
+        const isDir = fs.statSync(itemPath).isDirectory()
+        if (isDir) {
+            const temp = dir + item + '/'
+            deep(temp, child)
+        }
+    })
+    return list
+}
+
+deep('/src/docs/', list)
+console.log(JSON.stringify(list))
+
